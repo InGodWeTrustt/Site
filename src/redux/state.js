@@ -1,3 +1,8 @@
+const SEND_MESSAGE = 'SEND-MESSAGE'
+const ADD_POST = 'ADD-POST'
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+const UPDATE_NEW_MESSAGE_BODY_TEXT = 'UPDATE-NEW-MESSAGE-BODY-EXT'
+
 const store = {
     _state: {
         profilePage: {
@@ -10,6 +15,7 @@ const store = {
             ]
         },
         dialogsPage: {
+            newMessageBody: '',
             dialogs: [
                 { id: 1, name: 'Test' },
                 { id: 2, name: 'Test2' }
@@ -25,25 +31,39 @@ const store = {
     getState() {
         return this._state
     },
-    addPost() {
-        let newPost = {
-            id: 5,
-            msg: this._state.profilePage.newPostText,
-            likesCount: 2
-        };
-
-        this._state.profilePage.posts.push(newPost)
-        this._callSubscriber(this._state)
-    },
     updateNewPost(text) {
         this._state.profilePage.newPostText = text
         this._callSubscriber(this._state)
     },
-    subscribe(observer){
+    subscribe(observer) {
         this._callSubscriber = observer
+    },
+    dispatch(action) {
+        if (action.type === ADD_POST) {
+            let newPost = {
+                id: 5,
+                msg: this._state.profilePage.newPostText,
+                likesCount: 2
+            };
+
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newPostText = ''
+            this._callSubscriber(this._state)
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
+            this._state.profilePage.newPostText = action.newText
+            this._callSubscriber(this._state)
+        } else if (action.type === UPDATE_NEW_MESSAGE_BODY_TEXT) {
+            this._state.dialogsPage.newMessageBody = action.body
+            this._callSubscriber(this._state)
+        } else if(action.type === SEND_MESSAGE){
+            this._state.dialogsPage.newMessageBody = ''
+            this._state.dialogsPage.messages.push({ id: 6, message: this._state.dialogsPage.newMessageBody })
+            this._callSubscriber(this._state)
+        }
     }
+}
 
 }
 
-
+window.store = store
 export default store
