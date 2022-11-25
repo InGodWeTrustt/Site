@@ -1,3 +1,7 @@
+import dialogsReducer from "./dialogsReducer"
+import profileReducer from "./profileReducer"
+import sidebarReducer from "./sidebarReducer"
+
 const SEND_MESSAGE = 'SEND-MESSAGE'
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
