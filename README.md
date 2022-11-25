@@ -4,5 +4,6 @@
 
 ## Напоминание для себя
 
-Использовать ctr+alt+r, чтоб узнать snippets 
+Использовать сочетание клавиш "CTRL+ALT+R", чтоб увидеть доступные snippets 
+
 rfc - create react functional component
