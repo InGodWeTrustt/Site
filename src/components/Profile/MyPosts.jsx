@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import s from './MyPosts.module.css'
+import styles from './MyPosts.module.css'
 import Post from './Post'
 
 export default function MyPosts({ posts, addPost, updateNewText }) {
@@ -15,7 +15,7 @@ export default function MyPosts({ posts, addPost, updateNewText }) {
     }
 
     return (
-        <div className={s.postblock}>
+        <div className={styles.postblock}>
             <h3>My Posts</h3>
             <div>
                 <textarea ref={newPostElement}></textarea>
